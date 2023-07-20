@@ -40,4 +40,4 @@ const { url } = await startStandaloneServer(server, {
   listen: {port: process.env.HTTP_SERVER_PORT}
 })
 
-console.log('server running at', process.env.HTTP_SERVER_PORT)
+console.log(`server running at url: http://localhost:${process.env.HTTP_SERVER_PORT}`)
