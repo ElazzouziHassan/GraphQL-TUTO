@@ -3,8 +3,9 @@ import { startStandaloneServer } from '@apollo/server/standalone';
 
 import dotenv from 'dotenv'
 
-// IMPORTING TYPES : ------------------
+// IMPORTING TYPES & DB : -------------
 import { typeDefs } from './schema.js';
+import db from './_db.js'
 // ------------------------------------
 
 dotenv.config();
@@ -12,24 +13,18 @@ dotenv.config();
 // RESOLVERS : --------------------------------------------------
 const resolvers = {
   Query: {
-    games() {
-      return db.games
+    books() {
+      return db.books
     },
-    game(_, args) {
-      return db.games.find((game) => game.id === args.id)
-    },
+    
     authors() {
       return db.authors
     },
-    author(_, args) {
-      return db.authors.find((author) => author.id === args.id)
-    },
+    
     reviews() {
       return db.reviews
     },
-    review(_, args) {
-      return db.reviews.find((review) => review.id === args.id)
-    }
+   
   }
 }
 // --------------------------------------------------------------
@@ -37,7 +32,7 @@ const resolvers = {
 // SERVER : -----------------------------------------------------
 const server = new ApolloServer({
   typeDefs,
-  // resolvers
+  resolvers
 })
 // --------------------------------------------------------------
 
