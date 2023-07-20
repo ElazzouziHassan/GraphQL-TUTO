@@ -17,13 +17,21 @@ const resolvers = {
       return db.books
     },
     
+    book(_, args) {
+      return db.books.find((book) => book.id === args.id)
+    },
     authors() {
       return db.authors
     },
-    
+    author(_, args) {
+      return db.authors.find((author) => author.id === args.id)
+    },
     reviews() {
       return db.reviews
     },
+    review(_, args) {
+      return db.reviews.find((review) => review.id === args.id)
+    }
    
   }
 }
