@@ -29,5 +29,10 @@ export const typeDefs = `#graphql
   }
   type Mutation {
     deleteBook(id: ID!): [Book]
+    addBook(book: AddBookInput!): Book
+  }
+  input AddBookInput {
+    title: String!,
+    pages: Int!
   }
 `

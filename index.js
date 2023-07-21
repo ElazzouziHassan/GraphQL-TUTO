@@ -59,7 +59,17 @@ const resolvers = {
       db.books = db.books.filter((b) => b.id !== args.id)
 
       return db.books
+    },
+    addBook(_, args) {
+      let book = {
+        ...args.book, 
+        id: Math.floor(Math.random() * 10).toString()
+      }
+      db.books.push(book)
+
+      return book
     }
+
   }
   
 }
