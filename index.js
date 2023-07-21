@@ -68,10 +68,19 @@ const resolvers = {
       db.books.push(book)
 
       return book
-    }
+    },
+    updateBook(_, args) {
+      db.books = db.books.map((b) => {
+        if (b.id === args.id) {
+          return {...b, ...args.updates}
+        }
 
+        return b
+      })
+
+      return db.books.find((b) => b.id === args.id)
+    }
   }
-  
 }
 // --------------------------------------------------------------
 
