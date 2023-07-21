@@ -32,7 +32,27 @@ const resolvers = {
     review(_, args) {
       return db.reviews.find((review) => review.id === args.id)
     }
-   
+  },
+  Book: {
+    reviews(parent) {
+      return db.reviews.filter((r) => r.bookId === parent.id)
+    },
+    author(parent) {
+      return db.authors.filter( a => a.id === parent.authorId)
+    }
+  },
+  Review: {
+    author(parent) {
+      return db.authors.find((a) => a.id === parent.authorId)
+    },
+    book(parent) {
+      return db.books.find((b) => b.id === parent.bookId)
+    }
+  },
+  Author: {
+    reviews(parent) {
+      return db.reviews.filter((r) => r.authorId === parent.id)
+    }
   }
 }
 // --------------------------------------------------------------
