@@ -54,6 +54,13 @@ const resolvers = {
       return db.reviews.filter((r) => r.authorId === parent.id)
     }
   },
+  Mutation: {
+    deleteBook(_, args) {
+      db.books = db.books.filter((b) => b.id !== args.id)
+
+      return db.books
+    }
+  }
   
 }
 // --------------------------------------------------------------
