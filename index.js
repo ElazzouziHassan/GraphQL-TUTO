@@ -16,7 +16,6 @@ const resolvers = {
     books() {
       return db.books
     },
-    
     book(_, args) {
       return db.books.find((book) => book.id === args.id)
     },
@@ -57,7 +56,6 @@ const resolvers = {
   Mutation: {
     deleteBook(_, args) {
       db.books = db.books.filter((b) => b.id !== args.id)
-
       return db.books
     },
     addBook(_, args) {
@@ -74,25 +72,20 @@ const resolvers = {
         if (b.id === args.id) {
           return {...b, ...args.updates}
         }
-
         return b
       })
-
       return db.books.find((b) => b.id === args.id)
     }
   }
 }
 // --------------------------------------------------------------
-
 // SERVER : -----------------------------------------------------
 const server = new ApolloServer({
   typeDefs,
   resolvers
 })
 // --------------------------------------------------------------
-
 const { url } = await startStandaloneServer(server, {
   listen: {port: process.env.HTTP_SERVER_PORT}
 })
-
 console.log(`server running at url: http://localhost:${process.env.HTTP_SERVER_PORT}`)
